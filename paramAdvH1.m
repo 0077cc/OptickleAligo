@@ -4,7 +4,6 @@ function par = paramAdvH1(par)
 
 % basic constants
 lambda = 1064e-9;
-c = 299792458;
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 % Detector Geometry (distances in meters)
@@ -12,7 +11,7 @@ c = 299792458;
 % Lengths
 lPRC  = 57.656;   % PRCL: lPRC = lPR + (lIX + lIY) / 2   
 lasy  = 0.050;    % Schnupp Asy: lasy = lIX - lIY
-lmean = 4.38;     % (lIX + lIY) / 2
+lmean = 4.38;     % (lIX + lIY) / 2  (note this is the old iLIGO value)
 
 par.Length.IX = lmean + lasy / 2;  % distance [m] from BS to IX
 par.Length.IY = lmean - lasy / 2;  % distance [m] from BS to IY
@@ -92,10 +91,13 @@ par.iI = par.mass * par.iTM;  % moment of mirrors
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 % Input Beam Parameters
 par.Pin = 120.0;  % input power (W) - P_laser*T_PMC*T_MC*T_FI
-f1 = 9.099471;    % first modulation frequency 
+f1 = 9.099471e6;  % first modulation frequency 
 f2 = 5*f1;        % second modulation frequency
 Nmod1 = 1;		  % first modulation order
 Nmod2 = 1;		  % second modulation order
+
+Nmod1 = 0;
+Nmod2 = 0;
 
 % construct modulation vectors 
 n1 = (-Nmod1:Nmod1)';
